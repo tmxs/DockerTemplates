@@ -1,0 +1,19 @@
+version: '2.0'
+services:
+  web:
+    build: docker/apache
+    ports: 
+    - "80:80"
+    volumes:
+      - ./src:/var/www/html
+  db:
+    build: docker/mysql
+    environment:
+      MYSQL_DATABASE: project
+      MYSQL_ROOT_PASSWORD: dev
+      MYSQL_USER: dev
+      MYSQL_PASSWORD: dev
+    volumes:
+      - ./data:/var/lib/mysql
+    ports:
+      - "3306:3306"
